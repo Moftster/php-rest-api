@@ -90,4 +90,29 @@ public function update(){
 
     return false;
 }
+
+public function create(){
+    // Create query
+    $query = 'INSERT INTO ' . $this->table . ' SET name = :name';
+
+    // Prepare statement
+    $stmt = $this->conn->prepare($query);
+
+    // Clean data
+    $this->name = htmlspecialchars(strip_tags($this->name));
+
+    // Bind data
+    $stmt->bindParam(':name', $this->name);
+
+    // Execute query
+    if($stmt->execute()){
+        return true;
+    }
+
+    // Print error is somethign foes wroing
+    printf("Error: %s.\n", $stmt->error);
+
+    return false;
+}
+
 }
