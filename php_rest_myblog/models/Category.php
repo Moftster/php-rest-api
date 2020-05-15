@@ -115,4 +115,30 @@ public function create(){
     return false;
 }
 
+public function delete(){
+
+    // Delete query
+    $query = 'DELETE FROM ' . $this->table . ' WHERE id = :id';
+
+    // Prepare statement
+    $stmt = $this->conn->prepare($query);
+
+    // Clean ID
+    $this->id = htmlspecialchars(strip_tags($this->id));
+
+    // Bind ID
+    $stmt->bindParam(':id', $this->id);
+
+    // Execute query
+    if($stmt->execute()){
+        return true;
+    }
+
+    // Print error is somethign foes wroing
+    printf("Error: %s.\n", $stmt->error);
+
+    return false;
+}
+
+
 }
