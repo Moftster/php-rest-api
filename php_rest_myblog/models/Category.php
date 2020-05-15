@@ -85,7 +85,7 @@ public function update(){
         return true;
     }
 
-    // Print error is somethign foes wroing
+    // Print error is somethign goes wroing
     printf("Error: %s.\n", $stmt->error);
 
     return false;
