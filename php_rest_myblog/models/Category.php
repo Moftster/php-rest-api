@@ -7,7 +7,7 @@ class Category{
 
     // Category properties
     public $id;
-    public $category_name;
+    public $name;
     public $created_at;
 
     // Constructor with DB
@@ -66,15 +66,15 @@ public function update(){
     // Update query
     $query = 'UPDATE ' . $this->table . '
         SET
-            name = :name,
-        WHERE
-            id = :id';
+            name = :name
+        WHERE id = :id';
 
     // Prepare statement
     $stmt = $this->conn->prepare($query);
 
     // Clean data
     $this->name = htmlspecialchars(strip_tags($this->name));
+    $this->id = htmlspecialchars(strip_tags($this->id));
 
     // Bind data
     $stmt->bindParam(':name', $this->name);
