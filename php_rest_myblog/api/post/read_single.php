@@ -21,7 +21,6 @@
     $post->read_single();
 
     // Create array from single post data
-
     $post_arr = array(
         'id' => $post->id,
         'title' => $post->title,
